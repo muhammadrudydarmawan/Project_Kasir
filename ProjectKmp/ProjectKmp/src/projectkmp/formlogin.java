@@ -127,7 +127,6 @@ public class formlogin extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "terjadi kesalahan");
         }
        }
     }                                        

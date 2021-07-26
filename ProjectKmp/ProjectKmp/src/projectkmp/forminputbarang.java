@@ -223,6 +223,11 @@ System.out.println(e.getStackTrace());
         jLabel7.setText("Harga Jual");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
+        tcari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tcariActionPerformed(evt);
+            }
+        });
         tcari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tcariKeyReleased(evt);
@@ -389,14 +394,14 @@ System.out.println(e.getStackTrace());
             Connection c = ConnectionHelper.getConnection();
             Statement s = c.createStatement();
 
-            String sql = "select * from tbl_barang where kd_barang like '%" + tcari.getText() + "%' or nama_barang like'%" + tcari.getText() + "%' or jumlah_barang like'" + tcari.getText() + "%' or harga_beli like'%" + tcari.getText() + "%' " + "or harga_jual like'%" + tcari.getText() + "%'";
+            String sql = "select * from tbl_barang where kd_barang like '%" + tcari.getText() + "%' or nama_barang like'%" + tcari.getText() + "%' " + "or harga_jual like'%" + tcari.getText() + "%'";
             ResultSet r = s.executeQuery(sql);
 
             while (r.next()) {
                 Object[] o = new Object[5];
                 o[0] = r.getString("kd_barang");
                 o[1] = r.getString("nama_barang");
-                o[4] = r.getString("harga_jual");
+                o[2] = r.getString("harga_jual");
                 
                 
                 model.addRow(o);
@@ -425,6 +430,10 @@ System.out.println(e.getStackTrace());
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 AutoNokode();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tcariActionPerformed
     
     /**
      * @param args the command line arguments

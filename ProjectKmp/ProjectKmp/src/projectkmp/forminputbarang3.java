@@ -322,14 +322,14 @@ System.out.println(e.getStackTrace());
         String nbarang = (String) model.getValueAt(i, 1);
         tnamabarang.setText(nbarang);
 
-        String hjual = (String) model.getValueAt(i, 4);
+        String hjual = (String) model.getValueAt(i, 2);
         thargajual.setText(hjual);
     }//GEN-LAST:event_tabelinputMouseClicked
 
     private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
         // TODO add your handling code here:
          try {
-            String sql ="delete from tbl_barang where kd_barang='"+tkdbarang.getText()+"'";
+            String sql ="delete from tbl_barang3 where kd_barang='"+tkdbarang.getText()+"'";
             java.sql.Connection conn=(Connection)ConnectionHelper.getConnection();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -355,7 +355,7 @@ System.out.println(e.getStackTrace());
         String user = (String) model.getValueAt(i, 0);
         try {
             Connection c = ConnectionHelper.getConnection();
-            String sql = "UPDATE  tbl_barang SET nama_barang =  '" + tnamabarang.getText() +  "', harga_jual='"+ thargajual.getText() +"' WHERE  kd_barang ='" + tkdbarang.getText() + "'";
+            String sql = "UPDATE  tbl_barang3 SET nama_barang =  '" + tnamabarang.getText() +  "', harga_jual='"+ thargajual.getText() +"' WHERE  kd_barang ='" + tkdbarang.getText() + "'";
             PreparedStatement p = c.prepareStatement(sql);
             p.executeUpdate();
             p.close();
@@ -382,14 +382,14 @@ System.out.println(e.getStackTrace());
             Connection c = ConnectionHelper.getConnection();
             Statement s = c.createStatement();
 
-            String sql = "select * from tbl_barang where kd_barang like '%" + tcari.getText() + "%' or nama_barang like'%" + tcari.getText() + "%' or jumlah_barang like'" + tcari.getText() + "%' or harga_beli like'%" + tcari.getText() + "%' " + "or harga_jual like'%" + tcari.getText() + "%'";
+            String sql = "select * from tbl_barang3 where kd_barang like '%" + tcari.getText() + "%' or nama_barang like'%" + tcari.getText()  + "%' " + "or harga_jual like'%" + tcari.getText() + "%'";
             ResultSet r = s.executeQuery(sql);
 
             while (r.next()) {
                 Object[] o = new Object[5];
                 o[0] = r.getString("kd_barang");
                 o[1] = r.getString("nama_barang");
-                o[4] = r.getString("harga_jual");
+                o[2] = r.getString("harga_jual");
                 
                 
                 model.addRow(o);
